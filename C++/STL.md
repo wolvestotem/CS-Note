@@ -28,3 +28,15 @@
 
 ## Stack
 
+## unordered_set
+
+```C++
+    unordered_set<int> lookup;
+    lookup.insert(4);
+    lookup.insert(1);
+    lookup.insert(1);
+    lookup.insert(2);
+    for (auto i:lookup)
+        cout<<i<<' ';
+    //OUTPUT: 4 1 2
+```
