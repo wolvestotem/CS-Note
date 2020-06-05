@@ -1,0 +1,6 @@
+[submodule "Operating system/ucore_os_lab"]
+	path = Operating system/ucore_os_lab
+	url = https://github.com/wolvestotem/ucore_os_lab.git
+[submodule "Operating system/os_tutorial_lab"]
+	path = Operating system/os_tutorial_lab
+	url = https://github.com/chyyuu/os_tutorial_lab.git
