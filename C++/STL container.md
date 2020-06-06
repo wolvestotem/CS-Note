@@ -156,6 +156,7 @@ sss >> a >> b;
     lookup.insert(1);
     lookup.insert(1);
     lookup.insert(2);
+    lookup.emplace(5);
     for (auto i:lookup)
         cout<<i<<' ';
     //OUTPUT: 4 1 2
