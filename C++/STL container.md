@@ -83,13 +83,13 @@ sss >> a >> b;
     m.emplace(4,"are");
     m[5]="you";
 
-    //traversal 
-    for (auto i : m) 
+    //traversal
+    for (auto i : m)
         cout << i.first << "    " << i.second //element
-             << endl; 
+             << endl;
     for(auto i=m.begin();i!=m.end();i++)
         cout << i->first << "      " << i->second //iterator
-             << endl; 
+             << endl;
 ```
 
 ### map
