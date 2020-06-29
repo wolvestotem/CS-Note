@@ -4,3 +4,6 @@
 [submodule "Operating system/os_tutorial_lab"]
 	path = Operating system/os_tutorial_lab
 	url = https://github.com/chyyuu/os_tutorial_lab.git
+[submodule "Web/cs144.github.io"]
+	path = Web/cs144.github.io
+	url = https://github.com/CS144/cs144.github.io.git
