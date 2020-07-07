@@ -25,3 +25,11 @@ UDP video无需可靠性
 - Application layer
 - layer: 封装 reuse
 ![Summary](./pictures/Summary4layer.png)
+
+1-3 Network layer(IP)
+property:
+- Datagram (routing to the destination: IP SA, IP DA)
+- Unreliable
+- best effort(postal)(only drop if necessary, no detection)
+- Connectionless
+
