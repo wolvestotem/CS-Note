@@ -33,3 +33,24 @@ property:
 - best effort(postal)(only drop if necessary, no detection)
 - Connectionless
 
+IP header:
+TTL(time to live):decrease each router to prevent loop
+
+1-5 Packets switching principles
+Packets: IP包
+statistical multiplexing:
+- packet switching allows flows to use all available link capacity
+- Packet switching allows flows to share links capacity
+
+Summary:
+- Simple: forward flows independently, don't need ot know about the flows
+- efficient: share capacity among many flows
+
+1-6 Layering principles
+Each layer provides servises to the upper layer, using the servises of the layers below and its own private proceedings.
+
+1-7 Encapsulation
+layers and packets switching
+![Encapsulate](./pictures/Encapsulate.png)
+
+1-8 Bytes order
