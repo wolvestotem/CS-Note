@@ -1,5 +1,7 @@
 ## Stanford CS144
 
+### The Internet and IP introduction
+
 1-1 applications
 - www model: a reliable, bidirectional byte stream
 world wide web(client->server)
@@ -60,3 +62,33 @@ Little Endian: (computational) 右边byte高位，左边byte低位
 x86 is little endian
 ARM is big endian
 **convert the data when using network data**
+
+1-9 IPv4
+netmask: if same, within the same network, donot need a IP router
+IPv4 address: network, host
+
+1-10 Longest prefix match
+- algorithm of forwarding:LPM
+best prefix match
+![LPM with CIDR entries](./pictures/LPM.png)
+最长的prefix，否则default
+
+1-11 Address resolution protocol
+- Problem: have an IP address, what is the link address
+
+Ethernet: 48bit address
+map of link address and network address
+IPSA, IPDA donnot change, LKSA, LKDA change after a link
+
+1-12 The internet and IP Recap
+- How applicatoin uses INternet
+- structure of Internet: 4 layer model
+- IP
+- Basic architectural ideas and principles
+packet switching
+layering
+encapsulation
+
+### Transport
+
+2-1 TCP servide model
