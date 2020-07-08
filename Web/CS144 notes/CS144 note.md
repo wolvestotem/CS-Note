@@ -54,3 +54,9 @@ layers and packets switching
 ![Encapsulate](./pictures/Encapsulate.png)
 
 1-8 Bytes order
+Big Endian: (human reader)左边byte高位，右边byte低位
+Little Endian: (computational) 右边byte高位，左边byte低位
+**Network byte is big endian**
+x86 is little endian
+ARM is big endian
+**convert the data when using network data**

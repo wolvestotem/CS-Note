@@ -191,3 +191,11 @@ sss >> a >> b;
     mylist.erase(mylist.begin());
     mylist.erase(mylist.begin(),mylist.end());
 ```
+
+## pair
+
+```C++
+    pair<int,int> p(0,0);
+    pair<int,int> p1;
+    p1 = make_pair(0,0);
+```
