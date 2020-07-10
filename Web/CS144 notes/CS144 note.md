@@ -92,3 +92,20 @@ encapsulation
 ### Transport
 
 2-1 TCP servide model
+三次握手和四次挥手
+TCP可靠性
+- header:
+source port, destination port, seq number, ack number, checksum(16 bit, over the header and data),
+- IP h+TCP h(address+port)
+unique globally
+
+2-1 UDP servise model
+- header
+source port, destination port, length(header+data), checksum(header+data+IPSA+IPDA+ID(UDP))
+
+sample and fast
+
+2-3 ICMP servise model
+Internet Control Message protocol
+To report error and diagnose problem of network layer
+
