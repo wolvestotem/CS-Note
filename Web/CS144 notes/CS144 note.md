@@ -108,4 +108,53 @@ sample and fast
 2-3 ICMP servise model
 Internet Control Message protocol
 To report error and diagnose problem of network layer
+Network layer:
+1. IP
+2. Routing tables
+3. ICMP
+
+transport layer, provide info about network layer
+report massage, unrealiable
+ICMP type, code
+application: ping,tracerouter(UDP TTL=n)
+
+2-4 End to end principle
+Function can **only completely and correctly** be implemented by application at the end point of the communication system. The system can only help(performance enhancement).
+
+strong end to end principle
+Everything should be done at fringes.(flexiblility, simplicity)
+
+2-5 Error detection
+checksum, CRC, MAC
+checksum(IP,TCP)便宜，low garantee
+CRC(Ethenet)最安全
+MAC(TLS)security approach, no garantee
+
+2-6 finite state machine
+event and action
+
+2-7 stop and wait
+Flow control
+- stop and wait
+- sliding window
+
+等到收到ack再发下一个包
+
+2-8 Sliding window
+maintain: window size, last acknum, last sentnum
+ack含义：ack之前都收到了
+1,2,3,5 -> ack=4
+TCP相关：seq num, ack num, window size
+
+2-9 Reliable --Retransmission strategy
+timer
+- go back N(entire window)
+- selective repeat(only lost)√
+
+2-10 Reliable --TCP header
+typical 20 bytes long(4 bytes *5)
+![TCPheader](./pictures/TCPheader.png)
+checksum: pseudo header(part of IP header), header, data
+
+2-11 TCP setup and teardown
 
