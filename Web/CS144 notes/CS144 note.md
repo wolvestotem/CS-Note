@@ -135,6 +135,7 @@ event and action
 
 2-7 stop and wait
 Flow control
+
 - stop and wait
 - sliding window
 
@@ -148,6 +149,7 @@ TCP相关：seq num, ack num, window size
 
 2-9 Reliable --Retransmission strategy
 timer
+
 - go back N(entire window)
 - selective repeat(only lost)√
 
@@ -157,4 +159,8 @@ typical 20 bytes long(4 bytes *5)
 checksum: pseudo header(part of IP header), header, data
 
 2-11 TCP setup and teardown
+三次握手
+simultaneous open: 同时发syn，同时回syn,ack（四次握手）
+四次挥手
+双方FIN才能关闭,time_wait(client)
 
