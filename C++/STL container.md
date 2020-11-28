@@ -35,7 +35,7 @@ string 方法
     while (found != string::npos)
     {
         str[found] = '*';
-        found = str.find_first_of("aeiou", found);
+        found = str.find_first_of("aeiou", found+1);//find(string str, int start_rank)
     }
     std::cout << str << '\n';
     //OUTPUT: Pl**s*, r*pl*c* th* v*w*ls *n th*s s*nt*nc* by *st*r*sks.
@@ -51,6 +51,7 @@ string 方法
 
     str="sample phrase!!";
     str.replace(str.begin(),str.begin()+6,"replace");//左开右闭
+    str.replace(9,5,"!!!");//posrank, len, str.短的只替换3个
 ```
 
 ### stringstream
