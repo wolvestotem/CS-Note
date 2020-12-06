@@ -54,6 +54,26 @@ string 方法
     str.replace(9,5,"!!!");//posrank, len, str.短的只替换3个
 ```
 
+### string与其他类型转换
+
+```C++
+string to_string (int val);
+string to_string (long val);
+string to_string (long long val);
+string to_string (unsigned val);
+string to_string (unsigned long val);
+string to_string (unsigned long long val);
+string to_string (float val);
+string to_string (double val);
+string to_string (long double val);
+
+//
+int i_dec = std::stoi (str_dec,&sz);
+int i_hex = std::stoi (str_hex,nullptr,16);
+int i_bin = std::stoi (str_bin,nullptr,2);
+int i_auto = std::stoi (str_auto,nullptr,0);
+```
+
 ### stringstream
 
 ```C++
