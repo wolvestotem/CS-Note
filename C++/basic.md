@@ -74,6 +74,7 @@ int * const p; //p指针是常量指向地址不可更改
 int&& q=42;
 int&& p=foo;//false
 int&& qux=foo++;
+![一文读懂C++右值引用和std::move](https://zhuanlan.zhihu.com/p/335994370)
 3. 智能指针
 shared_ptr
 它有一个叫做共享所有权(sharedownership)的概念。shared_ptr的目标非常简单：多个指针可以同时指向一个对象，当最后一个shared_ptr离开作用域时，内存才会自动释放。shared_ptr中所实现的本质是引用计数(reference counting)，也就是说shared_ptr是支持复制的，复制一个shared_ptr的本质是对这个智能指针的引用次数加1，而当这个智能指针的引用次数降低到0的时候，该对象自动被析构
