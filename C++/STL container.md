@@ -137,6 +137,34 @@ sss >> a >> b;
 
 ## Queue
 
+### Priority_queue
+发现STL默认都是使用()比较的，默认比较使用less（即'<'运算符）,priority_queue<>默认是大根堆的，这是因为优先队列队首指向最后，队尾指向最前面的缘故！每次入队元素进去经排序调整后，优先级最大的元素排在最前面，也就是队尾指向的位置，这时候队首指向优先级最小的元素！
+
+优先队列的这个类型，其实有三个参数：priority_queue<class Type,class Container,class Compare>，即类型，容器和比较器，后两个参数可以缺省，这样默认的容器就是vector，比较方法是less，也就是默认大根堆，可以自定义写比较方法，但此时若有比较方法参数，则容器参数不可省略！priority_queue<>的可支持的容器必须是用数组实现的容器，如vector，deque，但不能是list（推荐vector），比较方法可以写结构体重载()运算符，也可以用less，greater这些语言实现了的，但是灵活性不够，建议手写重载结构体
+
+这个类里重载operator()，**和自定义sort排序不同**，sort只需bool cmp（……）（当然sort也可以弄一个比较类，再重载operator()）,若是priority_queue中写为sort的cmp形式则报错，如：bool cmp1(const node &a, const node&b)//报错！
+
+```C++
+struct compare{
+    bool operator(ListNode* a, ListNode* b){
+        return a->val>b->val;
+    }
+};
+
+void func(){
+    priority_queue<ListNode*,vector<ListNode*>,compare> q;
+    priority_queue<int,vector<int>,greater<int> > p;//小顶堆--堆顶在尾
+    //方法
+    while(!p.empty()){
+        p.push(1);
+        p.pop();
+        int x = p.top();
+        p.emplace(2);
+        int size = p.size();
+    }
+}
+```
+
 ### heap
 
 ```C++
