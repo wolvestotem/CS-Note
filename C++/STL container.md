@@ -8,6 +8,8 @@ vector方法
     v1.resize(distance(v1.begin(),unique(v1.begin(), v1.end())));
     // 10 20 20 20 30 30 20 20 10---->10 20 30 20 10
     //sorted -> unique vector
+    if(find(v.begin(),v.end(),20) != v.end())
+        cout<<"found";
 ```
 
 ## String
@@ -146,7 +148,7 @@ sss >> a >> b;
 
 ```C++
 struct compare{
-    bool operator(ListNode* a, ListNode* b){
+    bool operator()(ListNode* a, ListNode* b){
         return a->val>b->val;
     }
 };
