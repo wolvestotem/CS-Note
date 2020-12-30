@@ -290,3 +290,14 @@ int type；　　　　　　　　　　　　　//下一个可用的地址的�
 ### 什么是野指针
 指向垃圾内存的指针。有两种情况，一个是没有被初始化，另一个是指向的空间被free了
 
+## 四种cast
+static_cast<type_id> (expression)
+与C语言式的强制转换实现的功能几近一样。该运算符把expression转换为type-id类型，但没有运行时类型检查来保证转换的安全性
+const_cast<type_id> (expression)
+顾名思义，const_cast将转换掉表达式的const性质
+一、常量指针被转化成非常量的指针，并且仍然指向原来的对象；
+二、常量引用被转换成非常量的引用，并且仍然指向原来的对象。
+dynamic_cast<type_id> (expression)
+dynamic_cast主要用于类层次间的上行转换和下行转换，具有类型检查的功能，比static_cast更安全
+reinterpret_cast<type_id> (expression)
+此标识符的意思即为数据的二进制形式重新解释，但是不改变其值。这个转换方式很少使用。

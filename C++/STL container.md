@@ -11,7 +11,7 @@ vector方法
     if(find(v.begin(),v.end(),20) != v.end())
         cout<<"found";
 ```
-
+ 
 ## String
 
 初始化
