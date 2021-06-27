@@ -32,7 +32,7 @@ string 方法
     string str("Please, replace the vowels in this sentence by asterisks.");
     int found =str.find("in");
     if(found!=string::npos)
-        str[found]='*';
+        str[found]='*';//rank
     int found = str.find_first_of("aeiou");
     while (found != string::npos)
     {
