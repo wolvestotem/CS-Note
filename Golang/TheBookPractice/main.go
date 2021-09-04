@@ -2,8 +2,9 @@ package main
 
 import (
 	"bufio"
-	"go-thebook-practice/ch5"
 	"os"
+
+	"go-thebook-practice/ch5"
 )
 
 var (
@@ -23,5 +24,6 @@ func main() {
 		}
 		inputs = append(inputs, scanner.Text())
 	}
-	ch5.Input(inputs)
+	//ch5.Input(inputs)
+	ch5.Input2(inputs)
 }
