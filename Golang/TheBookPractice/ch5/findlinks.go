@@ -39,3 +39,31 @@ func findLinks(url string) ([]string, error) {
 	}
 	return visit(nil, doc), nil
 }
+
+func Input2(s []string) {
+	for _, url := range s {
+		err := findLinks2(url)
+		if err != nil {
+			fmt.Printf("findlinks:%v\n", err)
+		}
+	}
+}
+
+func findLinks2(url string) error {
+	resp, err := http.Get(url)
+	if err != nil {
+		return err
+	}
+	if resp.StatusCode != http.StatusOK {
+		resp.Body.Close()
+		return fmt.Errorf("getting %s: %s", url, resp.Status)
+	}
+	doc, err := html.Parse(resp.Body)
+	resp.Body.Close()
+	if err != nil {
+		return fmt.Errorf("parsing %s as HTML: %v", url, err)
+	}
+	fmt.Println("No problem")
+	forEachNode(doc, startElement, endElement)
+	return nil
+}

@@ -283,7 +283,12 @@ log.Fatalf("Site is down: %v\n", err)
 ```
 - 只输出错误信息，继续
 - 忽略错误 - 不要这么做，或者写明意图
-
+### 函数变量
+```go
+func square(n int) int { return n * n }
+f:=square
+```
+类似于C++函数指针，函数变量可以作为函数参数传递行为
 
 ## 常用系统包
 
