@@ -289,6 +289,50 @@ func square(n int) int { return n * n }
 f:=square
 ```
 类似于C++函数指针，函数变量可以作为函数参数传递行为
+```go
+func forEachNode(n *html.Node, pre, post func(n *html.Node)){
+    // pre, post 传函数实现前序和后序遍历--泛型
+}
+```
+
+### 匿名函数
+类似于lambda函数plus，匿名函数核心在于**函数中定义函数**，优势在于闭包，使用函数之外的变量（自由变量），相比lambda函数不限制长度。匿名函数可以赋值名称，从而递归调用。
+**注意！警告：捕获迭代变量**
+```go
+var rmdirs []func()
+for _, dir := range tempDirs() {
+    os.MkdirAll(dir, 0755)
+    rmdirs = append(rmdirs, func() {
+        os.RemoveAll(dir) // NOTE: incorrect!
+    })
+}
+```
+在上面的程序中，for循环语句引入了新的词法块，循环变量dir在这个词法块中被声明。在该循环中生成的所有函数值都共享相同的循环变量。**需要注意，函数值中记录的是循环变量的内存地址，而不是循环变量某一时刻的值**。以dir为例，后续的迭代会不断更新dir的值，当删除操作执行时，for循环已完成，dir中存储的值等于最后一次迭代的值。这意味着，每次对os.RemoveAll的调用删除的都是相同的目录。
+需要做
+```go
+for _, dir := range tempDirs() {
+    dir := dir // declares inner dir, initialized to outer dir
+    // ...
+}
+```
+这个问题不仅存在基于range的循环，在下面的例子中，**对循环变量i的使用也存在同样的问题**：(和C++完全不同)
+```go
+for i := 0; i < len(dirs); i++ {
+    os.MkdirAll(dirs[i], 0755) // OK
+    rmdirs = append(rmdirs, func() {
+        os.RemoveAll(dirs[i]) // NOTE: incorrect!
+    })
+}
+```
+循环中只能记录地址，所以使用即刻状态时候可以，不能储存为下一刻的状态
+
+### 变长函数
+```go
+func sum(vals...int) int {}
+fmt.Println(sum(1, 2, 3, 4)) // "10"
+values := []int{1, 2, 3, 4}
+fmt.Println(sum(values...)) // "10"
+```
 
 ## 常用系统包
 

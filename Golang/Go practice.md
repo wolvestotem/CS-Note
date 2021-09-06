@@ -11,3 +11,16 @@ https://www.jianshu.com/p/07ffc5827b26
 
 本地包调用方案
 https://zhuanlan.zhihu.com/p/109828249
+
+
+### range
+
+range slice和map时，index, key, value都是复制出来的值，直接改变不影响slice和map的原始值。如果想改，应该slice[i]，map[key]=value，这种形式修改
+```go
+for i:=0;i<len(slice);i++{
+    //change & update i
+}
+for key,value := range map{
+    map[key] = value2
+}
+```
