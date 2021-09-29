@@ -3,6 +3,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
 // prereqs maps computer science courses to their prerequisites.
@@ -26,9 +27,10 @@ var prereqs = map[string][]string{
 }
 
 func main() {
-	for i, course := range topoSort(prereqs) {
-		fmt.Printf("%d:\t%s\n", i+1, course)
-	}
+	// for i, course := range topoSort(prereqs) {
+	// 	fmt.Printf("%d:\t%s\n", i+1, course)
+	// }
+	fmt.Printf("time: %v", int32(time.Now().AddDate(0, 0, -1).Unix()))
 }
 
 func topoSort(m map[string][]string) []string {
