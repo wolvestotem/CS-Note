@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"os"
+	"runtime"
 )
 
 var (
@@ -40,6 +41,8 @@ func main() {
 		}
 		inputs = append(inputs, scanner.Text())
 	}
+	buffer:=[4096]byte
+	n:=runtime.Stack(buffer[:],false)
 	// findLinks 递归实现
 	//ch5.Input(inputs)
 

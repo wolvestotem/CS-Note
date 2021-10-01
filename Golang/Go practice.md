@@ -24,3 +24,16 @@ for key,value := range map{
     map[key] = value2
 }
 ```
+
+### for循环的捕获迭代变量问题
+所有for循环，延迟循环元素执行的函数，和迭代变量耦合，出问题：延迟执行的是最后一次迭代变量的值，捕获的是迭代变量的地址
+```go
+var rmdirs []func()
+for _, dir := range tempDirs() {
+    os.MkdirAll(dir, 0755)
+    rmdirs = append(rmdirs, func() {
+        os.RemoveAll(dir) // NOTE: incorrect!
+    })
+}
+```
+核心问题在于储存带迭代变量的函数值，需要将迭代变量赋值为外部变量储存
