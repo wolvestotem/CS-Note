@@ -390,7 +390,8 @@ go作为一个不是面向对象的语言，也具有对包外封装能力（依
 
 ## Interface接口
 它不会暴露出它所代表的对象的内部值的结构和这个对象支持的基础操作的集合；它们只会表现出它们自己的方法。也就是说当你有看到一个接口类型的值时，你不知道它是什么，唯一知道的就是可以通过它的方法来做什么。
-
+**https://stackoverflow.com/questions/23148812/whats-the-meaning-of-interface/23148998#23148998**
+![](./pictures/interface结构.png)
 ### error
 error是一个接口
 ```go
@@ -418,6 +419,70 @@ var w io.Writer = os.Stdout
 f, ok := w.(*os.File)      // success:  ok, f == os.Stdout
 b, ok := w.(*bytes.Buffer) // failure: !ok, b == nil
 ```
+
+## reflection
+Go语言提供了一种机制，能够在运行时更新变量和检查它们的值、调用它们的方法和它们支持的内在操作，而不需要在编译时就知道这些变量的具体类型。这种机制被称为反射。反射也可以让我们将类型本身作为第一类的值类型处理。
+### Type
+一个 Type 表示一个Go类型。它是一个接口，有许多方法来区分类型以及检查它们的组成部分，例如一个结构体的成员或一个函数的参数等。
+```go
+t := reflect.TypeOf(3)  // a reflect.Type
+fmt.Println(t.String()) // "int"
+fmt.Println(t)          // "int"
+```
+**回到 7.5节 的将一个具体的值转为接口类型会有一个隐式的接口转换操作，它会创建一个包含两个信息的接口值：操作数的动态类型（这里是 int）和它的动态的值（这里是 3）。**
+因为 reflect.TypeOf 返回的是一个动态类型的接口值，它总是返回具体的类型。因此，下面的代码将打印 "*os.File" 而不是 "io.Writer"
+
+### Value
+函数 reflect.ValueOf 接受任意的 interface{} 类型，并返回一个装载着其动态值的 reflect.Value。和 reflect.TypeOf 类似，reflect.ValueOf 返回的结果也是具体的类型，但是 reflect.Value 也可以持有一个接口值。
+```go
+v := reflect.ValueOf(3) // a reflect.Value
+fmt.Println(v)          // "3"
+fmt.Printf("%v\n", v)   // "3"
+```
+
+### Value 的方法
+```go
+func display(path string, v reflect.Value) {
+    switch v.Kind() {
+    case reflect.Invalid:
+        fmt.Printf("%s = invalid\n", path)
+    case reflect.Slice, reflect.Array:
+        for i := 0; i < v.Len(); i++ {
+            display(fmt.Sprintf("%s[%d]", path, i), v.Index(i))
+        }
+    case reflect.Struct:
+        for i := 0; i < v.NumField(); i++ {
+            fieldPath := fmt.Sprintf("%s.%s", path, v.Type().Field(i).Name)
+            display(fieldPath, v.Field(i))
+        }
+    case reflect.Map:
+        for _, key := range v.MapKeys() {
+            display(fmt.Sprintf("%s[%s]", path,
+                formatAtom(key)), v.MapIndex(key))
+        }
+    case reflect.Ptr:
+        if v.IsNil() {
+            fmt.Printf("%s = nil\n", path)
+        } else {
+            display(fmt.Sprintf("(*%s)", path), v.Elem())
+        }
+    case reflect.Interface:
+        if v.IsNil() {
+            fmt.Printf("%s = nil\n", path)
+        } else {
+            fmt.Printf("%s.type = %s\n", path, v.Elem().Type())
+            display(path+".value", v.Elem())
+        }
+    default: // basic types, channels, funcs
+        fmt.Printf("%s = %s\n", path, formatAtom(v))
+    }
+}
+```
+slice array string： Index(i)=Value
+struct: Field(i)=Value
+Ptr: Elem()=Value 指向的变量
+Interface: Elem()动态值
+
 
 ## 常用系统包
 
