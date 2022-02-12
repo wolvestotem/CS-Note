@@ -1,5 +1,9 @@
 # Go实践经验积累
 
+[toc]
+
+### 文档资料整理
+
 Go中为什么有代理，有的情况下问什么没有代理：
 [GOPRIVATE & GOPROXY](https://jfrog.com/blog/why-goproxy-matters-and-which-to-pick/)
 
@@ -16,6 +20,7 @@ https://zhuanlan.zhihu.com/p/109828249
 ### range
 
 range slice和map时，index, key, value都是复制出来的值，直接改变不影响slice和map的原始值。如果想改，应该slice[i]，map[key]=value，这种形式修改
+
 ```go
 for i:=0;i<len(slice);i++{
     //change & update i
@@ -26,7 +31,9 @@ for key,value := range map{
 ```
 
 ### for循环的捕获迭代变量问题
+
 所有for循环，延迟循环元素执行的函数，和迭代变量耦合，出问题：延迟执行的是最后一次迭代变量的值，捕获的是迭代变量的地址
+
 ```go
 var rmdirs []func()
 for _, dir := range tempDirs() {
@@ -36,4 +43,5 @@ for _, dir := range tempDirs() {
     })
 }
 ```
+
 核心问题在于储存带迭代变量的函数值，需要将迭代变量赋值为外部变量储存
