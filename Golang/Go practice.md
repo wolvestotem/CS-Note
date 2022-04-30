@@ -45,3 +45,35 @@ for _, dir := range tempDirs() {
 ```
 
 核心问题在于储存带迭代变量的函数值，需要将迭代变量赋值为外部变量储存
+
+## 常用系统包
+
+### time
+
+[time.Duration](https://studygolang.com/articles/12617)
+
+```go
+func Test() {
+    var waitFiveHundredMillisections time.Duration = 500 * time.Millisecond
+
+    startingTime := time.Now().UTC()
+    time.Sleep(600 * time.Millisecond)
+    endingTime := time.Now().UTC()
+
+    var duration time.Duration = endingTime.Sub(startingTime)
+
+    if duration >= waitFiveHundredMillisections {
+        fmt.Printf("Wait %v\nNative [%v]\nMilliseconds [%d]\nSeconds [%.3f]\n", waitFiveHundredMillisections, duration, duration.Nanoseconds()/1e6, duration.Seconds())
+    }
+}
+```
+
+### timer
+
+```go
+c.timer = time.AfterFunc(dur, func() {
+  c.cancel(true, DeadlineExceeded)
+})
+```
+
+两种创建方式：`NewTimer` & `AfterFunc`

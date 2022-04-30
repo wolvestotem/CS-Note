@@ -95,7 +95,7 @@ const (
 )
 ```
 
-我们在这个包声明了两种类型：Celsius和Fahrenheit分别对应不同的温度单位。它们虽然有着相同的底层类型float64，但是它们是不同的数据类型，因此它们不可以被相互比较或混在一个表达式运算。刻意区分类型，可以避免一些像无意中使用不同单位的温度混合计算导致的错误；因此需要一个类似Celsius(t)或Fahrenheit(t)形式的显式转型操作才能将float64转为对应的类型。
+我们在这个包声明了两种类型：Celsius和Fahrenheit分别对应不同的温度单位。它们虽然有着相同的底层类型float64，但是它们是不同的数据类型，因此它们不可以被相互比较或混在一个表达式运算。刻意区分类型，可以避免一些像无意中使用不同单位的温度混合计算导致的错误；因此需要一个类似 Celsius(t) 或 Fahrenheit(t) 形式的显式转型操作才能将float64转为对应的类型。
 
 ```go
 var c Celsius
@@ -1019,35 +1019,7 @@ Findrunnable 会从本地运行队列，全局运行队列，网络轮询器中�
 
 
 
-## 常用系统包
 
-### time
 
-[time.Duration](https://studygolang.com/articles/12617)
 
-```go
-func Test() {
-    var waitFiveHundredMillisections time.Duration = 500 * time.Millisecond
-
-    startingTime := time.Now().UTC()
-    time.Sleep(600 * time.Millisecond)
-    endingTime := time.Now().UTC()
-
-    var duration time.Duration = endingTime.Sub(startingTime)
-
-    if duration >= waitFiveHundredMillisections {
-        fmt.Printf("Wait %v\nNative [%v]\nMilliseconds [%d]\nSeconds [%.3f]\n", waitFiveHundredMillisections, duration, duration.Nanoseconds()/1e6, duration.Seconds())
-    }
-}
-```
-
-### timer
-
-```go
-c.timer = time.AfterFunc(dur, func() {
-  c.cancel(true, DeadlineExceeded)
-})
-```
-
-两种创建方式：`NewTimer` & `AfterFunc`
 

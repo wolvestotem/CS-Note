@@ -1,5 +1,7 @@
 # GORM
 
+[toc]
+
 Document: [doc](https://gorm.io/docs/)
 API: [api](https://pkg.go.dev/gorm.io/gorm#DB.Assign)
 
@@ -47,3 +49,64 @@ db.Take(&user)
 db.Last(&user)
 // SELECT * FROM users ORDER BY id DESC LIMIT 1;
 ```
+
+#### [约定](https://gorm.io/zh_CN/docs/conventions.html)
+
+Gorm喜欢约定而不是配置
+
+默认下蛇形命名就是表名/列名，但是也可以用户指定
+
+#### embeded
+
+[模型定义](https://gorm.io/zh_CN/docs/models.html)
+
+- 对 tag 描述见 doc
+- 还有关联 tag
+
+在JOIN中用得上
+
+```golang
+type UserDALModel struct {
+    gorm.Model `gorm:"embedded"`
+    models.User `gorm:"embedded"`
+}
+```
+
+```go
+type Author struct {
+	Name  string
+	Email string
+}
+
+type Blog struct {
+	ID      int
+	Author  Author `gorm:"embedded"`
+	Upvotes int32
+}
+// 等效于
+type Blog struct {
+	ID    int64
+	Name  string
+	Email string
+	Upvotes  int32
+}
+```
+
+You can also specify a prefix if you want with `embedded_prefix`
+
+```go
+type Blog struct {
+   ID      int
+   Author  Author `gorm:"embedded;embeddedPrefix:author_"`
+   Upvotes int32
+}
+// 等效于
+type Blog struct {
+   ID          int64
+   AuthorName  string
+   AuthorEmail string
+   Upvotes     int32
+}
+```
+
+相同字段待验证
